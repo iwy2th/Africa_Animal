@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct GalleryView: View {
   // MARK: - PROPERTIES
   @State private var selectedAnimal: String = "lion"
@@ -23,6 +22,7 @@ struct GalleryView: View {
   //DYNAMIC GRID LAYOUT
   @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
   @State private var gridColumn: Double = 3.0
+  @State private var isAnimating = false
 
   func gridSwitch() {
     gridLayout = Array(repeating: .init(.flexible()), count: Int(gridColumn))
@@ -38,9 +38,11 @@ struct GalleryView: View {
         .overlay(Circle().stroke(Color.white, lineWidth: 8))
       // MARK: - SLIDER
       Slider(value: $gridColumn, in: 2...4, step: 1, onEditingChanged: { value in
-        gridSwitch()
+        withAnimation(.easeIn) {
+          gridSwitch()
+        }
       })
-        .padding()
+      .padding()
 
       // MARK: - GRID
       VStack(alignment: .center, spacing: 30) {
@@ -56,11 +58,11 @@ struct GalleryView: View {
               }
           }//: LOOP
         }//: GRID
-        .animation(.easeIn)
         .onAppear {
           gridSwitch()
           haptics.impactOccurred()
         }
+
       }//: VSTACK
       .padding(.horizontal, 10)
       .padding(.vertical, 50)
