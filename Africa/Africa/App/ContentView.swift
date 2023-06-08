@@ -35,7 +35,7 @@ struct ContentView: View {
         if !isGridViewActive {
           List {
             CoverImageView()
-              .frame(width: .infinity, height: 300)
+              .frame(height: 300)
               .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             ForEach(animals) { animal in
               NavigationLink(destination: AnimalDetailView(animal: animal)) {
@@ -54,7 +54,7 @@ struct ContentView: View {
               }//: LOOP
             } //: GRID
             .padding(10)
-            .animation(.easeIn)
+          
           }//: SCROLL
         }//: CONDITION
       }//: GROUP
