@@ -29,7 +29,7 @@ struct VideoPlayerView: View {
         }
       }//: VSTACK
       .navigationTitle(videoTitle)
-      .navigationBarTitleDisplayMode(.inline)
+         .navigationBarTitleDisplayMode(.inline)
     }
 }
 // MARK: - PREVIEW

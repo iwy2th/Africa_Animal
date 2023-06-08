@@ -37,6 +37,7 @@ struct VideoListView: View {
           }
         }
       }//: NAVIGATION
+      .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 // MARK: - PREVIEW

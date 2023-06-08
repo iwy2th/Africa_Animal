@@ -35,7 +35,7 @@ struct ContentView: View {
         if !isGridViewActive {
           List {
             CoverImageView()
-              .frame(height: 300)
+              .frame(width: .infinity, height: 300)
               .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             ForEach(animals) { animal in
               NavigationLink(destination: AnimalDetailView(animal: animal)) {
@@ -43,6 +43,7 @@ struct ContentView: View {
               }
             }
           }//: LIST
+          .listStyle(.plain)
         } else {
           ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
@@ -75,7 +76,7 @@ struct ContentView: View {
             //GRID
             Button {
               isGridViewActive = true
-              haptics.impactOccurred()
+           haptics.impactOccurred()
               gridSwitch()
             } label: {
               Image(systemName: toolbarIcon)
@@ -83,10 +84,11 @@ struct ContentView: View {
                 .foregroundColor(isGridViewActive ? .accentColor : .primary)
             }
 
-          }//: HSTACJ
+          }//: HSTACK
         }
       }
     } //: NAVIGATION
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 
